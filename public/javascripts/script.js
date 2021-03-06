@@ -77,21 +77,66 @@ function createSmallCard(article) {
     return cardDiv;
 }
 
+function generateNewsSection(sectionNode, articles) {
+    const parentDiv = document.createElement('div');
+    parentDiv.classList = 'col col-sm-4';
+
+    const bigCard = createBigCard(articles[0]);
+    const smallCardOne = createSmallCard(articles[1]);
+    const smallCardTwo = createSmallCard(articles[2]);
+
+    sectionNode.appendChild(bigCard);
+    parentDiv.appendChild(smallCardOne);
+    parentDiv.appendChild(smallCardTwo);
+    sectionNode.appendChild(parentDiv);
+}
+
 fetch('https://newsapi.org/v2/top-headlines?country=us&apiKey=64b8cefdbfef47fabbfc04caaf2da7f9&pageSize=3')
     .then(response => {
         return response.json();
     })
     .then(data => {
+        let articles = data.articles;
+        const topHeadlines = document.querySelector('#topHeadlines .row');
+        generateNewsSection(topHeadlines, articles);
+    })
+
+fetch('https://newsapi.org/v2/everything?q=covid&apiKey=64b8cefdbfef47fabbfc04caaf2da7f9&pageSize=3')
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        let articles = data.articles;
         const covidNews = document.querySelector('#covidNews .row');
-        const parentDiv = document.createElement('div');
-        parentDiv.classList = 'col col-sm-4';
+        generateNewsSection(covidNews, articles);
+    })
 
+fetch('https://newsapi.org/v2/everything?q=politics&apiKey=64b8cefdbfef47fabbfc04caaf2da7f9&pageSize=3')
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        let articles = data.articles;
+        const politicsNews = document.querySelector('#politicsNews .row');
+        generateNewsSection(politicsNews, articles);
+    })
 
-        const bigCard = createBigCard(data.articles[0]);
-        const smallCardOne = createBigCard(data.articles[1]);
-        const smallCardTwo = createBigCard(data.articles[2]);
-        covidNews.appendChild(bigCard);
-        parentDiv.appendChild(smallCardOne);
-        parentDiv.appendChild(smallCardTwo);
-        covidNews.appendChild(parentDiv);
+fetch('https://newsapi.org/v2/everything?q=sport&apiKey=64b8cefdbfef47fabbfc04caaf2da7f9&pageSize=3')
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        let articles = data.articles;
+        const sportNews = document.querySelector('#sportNews .row');
+        generateNewsSection(sportNews, articles);
+    })
+
+fetch('https://newsapi.org/v2/everything?q=technology&apiKey=64b8cefdbfef47fabbfc04caaf2da7f9&pageSize=3')
+    .then(response => {
+        return response.json();
+    })
+    .then(data => {
+        let articles = data.articles;
+        const technologyNews = document.querySelector('#technologyNews .row');
+        generateNewsSection(technologyNews, articles);
     })
