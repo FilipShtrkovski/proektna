@@ -18,10 +18,8 @@ function createBigCard(article) {
     cardTitle.appendChild(titleName);
 
     const cardContent = document.createElement('p');
+    cardContent.textContent = article.description;
     cardContent.classList = 'card-text';
-
-    const content = document.createTextNode(article.description);
-    cardContent.appendChild(content);
 
     const button = document.createElement('a');
     button.classList = 'btn btn-primary';
@@ -29,7 +27,7 @@ function createBigCard(article) {
     button.innerText = 'View More';
 
     cardBody.appendChild(cardTitle);
-    cardBody.appendChild(content);
+    cardBody.appendChild(cardContent);
     cardBody.appendChild(button);
 
     cardDiv.appendChild(img);
@@ -57,10 +55,8 @@ function createSmallCard(article) {
     cardTitle.appendChild(titleName);
 
     const cardContent = document.createElement('p');
+    cardContent.textContent = article.description;
     cardContent.classList = 'card-text';
-
-    const content = document.createTextNode(article.description);
-    cardContent.appendChild(content);
 
     const button = document.createElement('a');
     button.classList = 'btn btn-primary';
@@ -68,7 +64,7 @@ function createSmallCard(article) {
     button.innerText = 'View More';
 
     cardBody.appendChild(cardTitle);
-    cardBody.appendChild(content);
+    cardBody.appendChild(cardContent);
     cardBody.appendChild(button);
 
     cardDiv.appendChild(img);
